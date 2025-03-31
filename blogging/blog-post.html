@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optimizing Angular Applications for Performance - My Technical Blogs</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <style>
+    /* Blog post specific styles */
+    .blog-post {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: var(--spacing-4);
+    }
+    
+    .blog-header {
+      margin-bottom: var(--spacing-8);
+    }
+    
+    .blog-category {
+      display: inline-block;
+      background-color: var(--vanguard-100);
+      color: var(--vanguard-600);
+      font-size: var(--font-size-xs);
+      font-weight: 600;
+      padding: var(--spacing-1) var(--spacing-2);
+      border-radius: var(--border-radius-full);
+      margin-bottom: var(--spacing-2);
+    }
+    
+    .blog-title {
+      font-size: var(--font-size-4xl);
+      margin-bottom: var(--spacing-4);
+    }
+    
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-6);
+      margin-bottom: var(--spacing-6);
+      color: var(--charcoal-300);
+      font-size: var(--font-size-sm);
+    }
+    
+    .blog-author {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-2);
+    }
+    
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--border-radius-full);
+      object-fit: cover;
+    }
+    
+    .blog-content {
+      font-size: var(--font-size-lg);
+      line-height: var(--line-height-relaxed);
+    }
+    
+    .blog-content p {
+      margin-bottom: var(--spacing-6);
+    }
+    
+    .blog-content h2 {
+      font-size: var(--font-size-2xl);
+      margin-top: var(--spacing-10);
+      margin-bottom: var(--spacing-4);
+      color: var(--charcoal-500);
+    }
+    
+    .blog-content h3 {
+      font-size: var(--font-size-xl);
+      margin-top: var(--spacing-8);
+      margin-bottom: var(--spacing-3);
+      color: var(--charcoal-500);
+    }
+    
+    .blog-content ul, 
+    .blog-content ol {
+      margin-bottom: var(--spacing-6);
+      margin-left: var(--spacing-6);
+    }
+    
+    .blog-content li {
+      margin-bottom: var(--spacing-2);
+    }
+    
+    .blog-content ul {
+      list-style-type: disc;
+    }
+    
+    .blog-content ol {
+      list-style-type: decimal;
+    }
+    
+    .blog-content a {
+      text-decoration: underline;
+    }
+    
+    .blog-content blockquote {
+      border-left: 4px solid var(--vanguard-300);
+      padding-left: var(--spacing-4);
+      margin-bottom: var(--spacing-6);
+      font-style: italic;
+      color: var(--charcoal-300);
+    }
+    
+    .blog-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--border-radius-md);
+      margin: var(--spacing-6) 0;
+    }
+    
+    .code-block {
+      margin: var(--spacing-6) 0;
+      border-radius: var(--border-radius-md);
+      overflow: hidden;
+    }
+    
+    .code-block pre {
+      padding: var(--spacing-4);
+      overflow-x: auto;
+    }
+    
+    .tags-section {
+      margin-top: var(--spacing-8);
+      margin-bottom: var(--spacing-6);
+    }
+    
+    .tags-title {
+      font-size: var(--font-size-sm);
+      font-weight: 600;
+      margin-bottom: var(--spacing-2);
+      color: var(--charcoal-300);
+    }
+    
+    .tags-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-2);
+    }
+    
+    .tag {
+      display: inline-block;
+      padding: var(--spacing-1) var(--spacing-3);
+      background-color: var(--haze-300);
+      color: var(--charcoal-400);
+      border-radius: var(--border-radius-full);
+      font-size: var(--font-size-xs);
+    }
+    
+    .share-section {
+      margin-top: var(--spacing-8);
+      margin-bottom: var(--spacing-8);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-4);
+    }
+    
+    .share-title {
+      font-weight: 600;
+      color: var(--charcoal-400);
+    }
+    
+    .share-links {
+      display: flex;
+      gap: var(--spacing-2);
+    }
+    
+    .share-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background-color: var(--haze-300);
+      color: var(--charcoal-400);
+      border-radius: var(--border-radius-full);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    .share-link:hover {
+      background-color: var(--vanguard-500);
+      color: var(--neutral-white);
+    }
+    
+    .author-box {
+      background-color: var(--haze-200);
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-6);
+      display: flex;
+      gap: var(--spacing-6);
+      margin-top: var(--spacing-10);
+      margin-bottom: var(--spacing-10);
+    }
+    
+    .author-avatar-large {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--border-radius-full);
+      object-fit: cover;
+    }
+    
+    .author-info {
+      flex: 1;
+    }
+    
+    .author-name {
+      font-size: var(--font-size-xl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-2);
+    }
+    
+    .author-bio {
+      color: var(--charcoal-300);
+      margin-bottom: var(--spacing-4);
+    }
+    
+    .author-social {
+      display: flex;
+      gap: var(--spacing-3);
+    }
+    
+    .comments-section {
+      margin-top: var(--spacing-10);
+    }
+    
+    .comments-title {
+      font-size: var(--font-size-2xl);
+      margin-bottom: var(--spacing-6);
+    }
+    
+    .comment-form {
+      margin-bottom: var(--spacing-8);
+    }
+    
+    .form-group {
+      margin-bottom: var(--spacing-4);
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: var(--spacing-2);
+      font-weight: 500;
+    }
+    
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: var(--spacing-3);
+      border: 1px solid var(--haze-500);
+      border-radius: var(--border-radius-md);
+      font-family: var(--font-family);
+      font-size: var(--font-size-base);
+    }
+    
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .submit-button {
+      background-color: var(--vanguard-500);
+      color: var(--neutral-white);
+      font-family: var(--font-family);
+      font-weight: 600;
+      font-size: var(--font-size-base);
+      padding: var(--spacing-3) var(--spacing-6);
+      border: none;
+      border-radius: var(--border-radius-md);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .submit-button:hover {
+      background-color: var(--vanguard-600);
+    }
+    
+    .related-posts {
+      margin-top: var(--spacing-16);
+      margin-bottom: var(--spacing-10);
+    }
+    
+    .related-title {
+      font-size: var(--font-size-2xl);
+      margin-bottom: var(--spacing-8);
+      text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      .blog-title {
+        font-size: var(--font-size-3xl);
+      }
+      
+      .blog-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-2);
+      }
+      
+      .author-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      
+      .author-social {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <h1 class="site-title">My Technical Blogs</h1>
+        <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link active">Articles</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <article class="blog-post">
+      <header class="blog-header">
+        <div class="blog-category">Angular</div>
+        <h1 class="blog-title">Optimizing Angular Applications for Performance</h1>
+        <div class="blog-meta">
+          <div class="blog-author">
+            <img src="https://placehold.co/80x80/e5ebe3/456637" alt="Author Avatar" class="author-avatar">
+            <span>By John Doe</span>
+          </div>
+          <div class="blog-date">April 15, 2023</div>
+          <div class="blog-read-time">8 min read</div>
+        </div>
+      </header>
+      
+      <div class="blog-content">
+        <p>
+          Performance is a critical aspect of web applications that directly impacts user experience. In Angular applications, optimizing performance can sometimes feel challenging due to the framework's complexity. However, with the right techniques and practices, you can significantly improve how your Angular app performs.
+        </p>
+
+        <p>
+          In this article, we'll explore various strategies to identify and fix common performance bottlenecks in Angular applications. These optimizations will help your app load faster, respond more quickly to user interactions, and provide a smoother overall experience.
+        </p>
+
+        <h2>Common Performance Issues in Angular Applications</h2>
+        
+        <p>
+          Before diving into specific optimization techniques, it's important to understand the common sources of performance issues in Angular applications:
+        </p>
+
+        <ul>
+          <li>Large bundle sizes leading to longer load times</li>
+          <li>Excessive change detection cycles</li>
+          <li>Unoptimized rendering of large lists</li>
+          <li>Memory leaks from unsubscribed observables</li>
+          <li>Inefficient component communication</li>
+          <li>Server-side bottlenecks affecting client performance</li>
+        </ul>
+
+        <h2>Optimizing Bundle Size</h2>
+
+        <p>
+          The size of your JavaScript bundles directly affects how long users wait before they can interact with your application. Here are strategies to reduce bundle size:
+        </p>
+
+        <h3>1. Enable Production Mode</h3>
+
+        <p>
+          Always ensure production mode is enabled for production builds. This removes development-specific code and warnings:
+        </p>
+
+        <div class="code-block">
+          <pre><code class="typescript">// main.ts
+import { enableProdMode } from '@angular/core';
+import { environment } from './environments/environment';
+
+if (environment.production) {
+  enableProdMode();
+}
+</code></pre>
+        </div>
+
+        <h3>2. Implement Lazy Loading</h3>
+
+        <p>
+          Lazy loading allows you to load feature modules only when they're needed, reducing the initial bundle size:
+        </p>
+
+        <div class="code-block">
+          <pre><code class="typescript">// app-routing.module.ts
+const routes: Routes = [
+  {
+    path: 'customers',
+    loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule)
+  },
+  {
+    path: 'orders',
+    loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule)
+  }
+];
+</code></pre>
+        </div>
+
+        <h3>3. Use Tree Shaking</h3>
+
+        <p>
+          Tree shaking is a build optimization that removes unused code. Ensure your Angular CLI is configured to leverage this:
+        </p>
+
+        <div class="code-block">
+          <pre><code class="json">// angular.json
+"configurations": {
+  "production": {
+    "optimization": true,
+    "buildOptimizer": true
+  }
+}
+</code></pre>
+        </div>
+
+        <h2>Optimizing Change Detection</h2>
+
+        <p>
+          Angular's change detection is powerful but can become a performance bottleneck if not used efficiently.
+        </p>
+
+        <h3>1. Use OnPush Change Detection Strategy</h3>
+
+        <p>
+          OnPush change detection only runs when inputs change or events occur, reducing unnecessary checks:
+        </p>
+
+        <div class="code-block">
+          <pre><code class="typescript">@Component({
+  selector: 'app-user-card',
+  templateUrl: './user-card.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class UserCardComponent {
+  @Input() user: User;
+}
+</code></pre>
+        </div>
+
+        <h3>2. Detach Change Detection When Appropriate</h3>
+
+        <p>
+          For components that update less frequently, you can manually control change detection:
+        </p>
+
+        <div class="code-block">
+          <pre><code class="typescript">export class DataVisualizationComponent implements OnInit {
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    this.cdr.detach(); // Detach change detection
+    
+    // Update the view manually when data changes
+    this.dataService.getData().subscribe(data => {
+      this.data = data;
+      this.cdr.detectChanges(); // Manually trigger change detection
+    });
+  }
+}
+</code></pre>
+        </div>
+
+        <h2>Optimizing Rendering Performance</h2>
+
+        <h3>1. Use trackBy with ngFor</h3>
+
+        <p>
+          When rendering lists with ngFor, using trackBy helps Angular identify which items have changed, avoiding unnecessary DOM updates:
+        </p>
+
+        <div class="code-block">
+          <pre><code class="html">&lt;div *ngFor="let item of items; trackBy: trackByFn"&gt;
+  {{ item.name }}
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="code-block">
+          <pre><code class="typescript">trackByFn(index: number, item: any): number {
+  return item.id; // Use a unique identifier
+}
+</code></pre>
+        </div>
+
+        <h3>2. Virtual Scrolling for Large Lists</h3>
+
+        <p>
+          For very large lists, use Angular's virtual scrolling to render only visible items:
+        </p>
+
+        <div class="code-block">
+          <pre><code class="html">&lt;cdk-virtual-scroll-viewport itemSize="50" class="viewport"&gt;
+  &lt;div *cdkVirtualFor="let item of items" class="item"&gt;
+    {{ item.name }}
+  &lt;/div&gt;
+&lt;/cdk-virtual-scroll-viewport&gt;</code></pre>
+        </div>
+
+        <h2>Memory Management</h2>
+
+        <h3>1. Unsubscribe from Observables</h3>
+
+        <p>
+          Always unsubscribe from observables to prevent memory leaks:
+        </p>
+
+        <div class="code-block">
+          <pre><code class="typescript">export class DataComponent implements OnInit, OnDestroy {
+  private subscription: Subscription = new Subscription();
+  
+  ngOnInit() {
+    this.subscription.add(
+      this.dataService.getData().subscribe(data => {
+        this.data = data;
+      })
+    );
+  }
+  
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+}
+</code></pre>
+        </div>
+
+        <h3>2. Use Async Pipe</h3>
+
+        <p>
+          The async pipe automatically subscribes and unsubscribes from observables:
+        </p>
+
+        <div class="code-block">
+          <pre><code class="html">&lt;div *ngIf="data$ | async as data"&gt;
+  {{ data.name }}
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <h2>Performance Monitoring</h2>
+
+        <p>
+          Implement performance monitoring to identify issues in production:
+        </p>
+
+        <ul>
+          <li>Use Angular DevTools for runtime performance analysis</li>
+          <li>Implement Lighthouse audits in your CI/CD pipeline</li>
+          <li>Consider using third-party APM solutions for real-user monitoring</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+
+        <p>
+          Optimizing Angular applications requires a multi-faceted approach targeting bundle size, change detection, rendering, and memory management. By systematically applying these techniques, you can significantly improve your application's performance and user experience.
+        </p>
+
+        <p>
+          Remember that performance optimization is an ongoing process. Regularly audit your application, measure the impact of changes, and refine your approach based on real-world usage patterns.
+        </p>
+      </div>
+      
+      <div class="tags-section">
+        <div class="tags-title">Tags:</div>
+        <div class="tags-list">
+          <span class="tag">Angular</span>
+          <span class="tag">Performance</span>
+          <span class="tag">Optimization</span>
+          <span class="tag">Frontend</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+      
+      <div class="share-section">
+        <span class="share-title">Share:</span>
+        <div class="share-links">
+          <a href="#" class="share-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="share-link"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="share-link"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="share-link"><i class="fab fa-reddit"></i></a>
+        </div>
+      </div>
+      
+      <div class="author-box">
+        <img src="https://placehold.co/160x160/e5ebe3/456637" alt="Author Avatar" class="author-avatar-large">
+        <div class="author-info">
+          <h3 class="author-name">John Doe</h3>
+          <p class="author-bio">Frontend Engineer with 8+ years of experience specializing in Angular and React. Passionate about performance optimization and building scalable web applications.</p>
+          <div class="author-social">
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="comments-section">
+        <h2 class="comments-title">Comments</h2>
+        <form class="comment-form">
+          <div class="form-group">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" id="name" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label for="comment" class="form-label">Comment</label>
+            <textarea id="comment" class="form-textarea" required></textarea>
+          </div>
+          <button type="submit" class="submit-button">Post Comment</button>
+        </form>
+      </div>
+    </article>
+    
+    <section class="related-posts">
+      <div class="container">
+        <h2 class="related-title">Related Articles</h2>
+        <div class="posts-grid">
+          <article class="post-card">
+            <div class="post-image">
+              <img src="https://placehold.co/600x400/e5ebe3/456637" alt="Article thumbnail">
+            </div>
+            <div class="post-content">
+              <div class="post-category">Angular</div>
+              <h3 class="post-title">Angular Ivy: What You Need to Know</h3>
+              <p class="post-excerpt">An in-depth look at Angular's Ivy compiler and rendering engine.</p>
+              <div class="post-meta">
+                <span class="post-date">March 5, 2023</span>
+                <span class="post-read-time">7 min read</span>
+              </div>
+              <a href="#" class="post-link">Read Article</a>
+            </div>
+          </article>
+          <article class="post-card">
+            <div class="post-image">
+              <img src="https://placehold.co/600x400/e5ebe3/456637" alt="Article thumbnail">
+            </div>
+            <div class="post-content">
+              <div class="post-category">Performance</div>
+              <h3 class="post-title">Web Vitals: The Essential Metrics</h3>
+              <p class="post-excerpt">Understanding Core Web Vitals and how to optimize them in your web applications.</p>
+              <div class="post-meta">
+                <span class="post-date">February 18, 2023</span>
+                <span class="post-read-time">9 min read</span>
+              </div>
+              <a href="#" class="post-link">Read Article</a>
+            </div>
+          </article>
+          <article class="post-card">
+            <div class="post-image">
+              <img src="https://placehold.co/600x400/e5ebe3/456637" alt="Article thumbnail">
+            </div>
+            <div class="post-content">
+              <div class="post-category">JavaScript</div>
+              <h3 class="post-title">Advanced JavaScript Patterns</h3>
+              <p class="post-excerpt">Exploring design patterns that can help improve your JavaScript code quality.</p>
+              <div class="post-meta">
+                <span class="post-date">January 22, 2023</span>
+                <span class="post-read-time">11 min read</span>
+              </div>
+              <a href="#" class="post-link">Read Article</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3 class="footer-title">About</h3>
+          <p class="footer-text">A blog focused on frontend engineering, web development, and mobile app technologies.</p>
+        </div>
+        <div class="footer-column">
+          <h3 class="footer-title">Categories</h3>
+          <ul class="footer-list">
+            <li><a href="#">Angular</a></li>
+            <li><a href="#">JavaScript</a></li>
+            <li><a href="#">Node.js</a></li>
+            <li><a href="#">Mobile Development</a></li>
+            <li><a href="#">Web Performance</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3 class="footer-title">Connect</h3>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-dev"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="copyright">© 2023 My Technical Blogs. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html> 

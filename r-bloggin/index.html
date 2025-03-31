@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Technical Blogs</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>My Technical Blogs</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="#articles">Articles</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Technical Insights & Development Tips</h2>
+                    <p>Sharing knowledge and experience in modern web and mobile development.</p>
+                    <a href="#articles" class="btn btn-primary">Explore Articles</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>About My Expertise</h2>
+                <div class="expertise-grid">
+                    <div class="expertise-card">
+                        <i class="fab fa-angular"></i>
+                        <h3>Angular</h3>
+                        <p>Building scalable web applications with Angular, focusing on performance optimization and component architecture.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <i class="fab fa-js"></i>
+                        <h3>JavaScript</h3>
+                        <p>Deep understanding of modern JavaScript patterns, ES6+ features, and asynchronous programming.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <i class="fab fa-node-js"></i>
+                        <h3>Node.js</h3>
+                        <p>Creating robust backend services and RESTful APIs with Node.js and Express.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <i class="fab fa-react"></i>
+                        <h3>React Native</h3>
+                        <p>Developing cross-platform mobile applications with React Native, focusing on native-like user experience.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Ionic</h3>
+                        <p>Building hybrid mobile applications with Ionic framework, leveraging web technologies for mobile development.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="articles" class="articles-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Latest Articles</h2>
+                    <div class="search-container">
+                        <input type="text" placeholder="Search articles...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+
+                <div class="tags-filter">
+                    <span class="tag active">All</span>
+                    <span class="tag">Angular</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">React Native</span>
+                    <span class="tag">Ionic</span>
+                </div>
+
+                <div class="articles-grid">
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="https://via.placeholder.com/600x400" alt="Article image">
+                        </div>
+                        <div class="article-content">
+                            <div class="article-tags">
+                                <span class="tag">Angular</span>
+                                <span class="tag">Performance</span>
+                            </div>
+                            <h3>Optimizing Angular Applications for Performance</h3>
+                            <p>Learn advanced techniques to improve the performance of your Angular applications through lazy loading, change detection strategies, and more.</p>
+                            <div class="article-meta">
+                                <span class="article-date">May 15, 2023</span>
+                                <span class="article-read-time">8 min read</span>
+                            </div>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="https://via.placeholder.com/600x400" alt="Article image">
+                        </div>
+                        <div class="article-content">
+                            <div class="article-tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">ES6+</span>
+                            </div>
+                            <h3>Modern JavaScript Patterns for Clean Code</h3>
+                            <p>Exploring ES6+ features and design patterns to write cleaner, more maintainable JavaScript code in your projects.</p>
+                            <div class="article-meta">
+                                <span class="article-date">April 28, 2023</span>
+                                <span class="article-read-time">6 min read</span>
+                            </div>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="https://via.placeholder.com/600x400" alt="Article image">
+                        </div>
+                        <div class="article-content">
+                            <div class="article-tags">
+                                <span class="tag">Node.js</span>
+                                <span class="tag">API</span>
+                            </div>
+                            <h3>Building Secure RESTful APIs with Node.js</h3>
+                            <p>A comprehensive guide to creating secure, efficient, and well-structured APIs using Node.js, Express, and best practices.</p>
+                            <div class="article-meta">
+                                <span class="article-date">April 10, 2023</span>
+                                <span class="article-read-time">10 min read</span>
+                            </div>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="https://via.placeholder.com/600x400" alt="Article image">
+                        </div>
+                        <div class="article-content">
+                            <div class="article-tags">
+                                <span class="tag">React Native</span>
+                                <span class="tag">Mobile</span>
+                            </div>
+                            <h3>State Management Solutions in React Native</h3>
+                            <p>Comparing different state management approaches in React Native applications, from Context API to Redux and MobX.</p>
+                            <div class="article-meta">
+                                <span class="article-date">March 22, 2023</span>
+                                <span class="article-read-time">7 min read</span>
+                            </div>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="pagination">
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#" class="next">Next</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2>Subscribe to My Newsletter</h2>
+                    <p>Get the latest articles and updates delivered straight to your inbox.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2>Get in Touch</h2>
+                <p>Have questions or suggestions? Feel free to reach out!</p>
+                
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="Medium"><i class="fab fa-medium"></i></a>
+                    <a href="#" aria-label="Stack Overflow"><i class="fab fa-stack-overflow"></i></a>
+                </div>
+                
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>My Technical Blogs</h2>
+                    <p>Sharing knowledge and experience in modern web and mobile development.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h3>Navigation</h3>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#articles">Articles</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-column">
+                        <h3>Categories</h3>
+                        <ul>
+                            <li><a href="#">Angular</a></li>
+                            <li><a href="#">JavaScript</a></li>
+                            <li><a href="#">Node.js</a></li>
+                            <li><a href="#">React Native</a></li>
+                            <li><a href="#">Ionic</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-column">
+                        <h3>Follow Me</h3>
+                        <div class="social-links">
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="Medium"><i class="fab fa-medium"></i></a>
+                            <a href="#" aria-label="Stack Overflow"><i class="fab fa-stack-overflow"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 My Technical Blogs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

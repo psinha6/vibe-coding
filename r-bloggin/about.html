@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - My Technical Blogs</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Riverty Web Components -->
+    <script type="module" src="https://cdn.riverty.design/components/1.15.0/dist/web-components/web-components.esm.js"></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>My Technical Blogs</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="index.html#articles">Articles</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="about-page">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-header">
+                        <h2>About Me</h2>
+                        <p class="lead">A passionate frontend engineer with expertise in modern web and mobile development.</p>
+                    </div>
+
+                    <div class="about-grid">
+                        <div class="about-text">
+                            <h3>My Journey</h3>
+                            <p>With over 5 years of experience in frontend development, I've worked on various projects ranging from enterprise applications to mobile apps. My expertise lies in creating scalable, performant, and user-friendly applications using modern technologies.</p>
+                            
+                            <h3>Technical Skills</h3>
+                            <ul class="skills-list">
+                                <li><i class="fab fa-angular"></i> Angular Development</li>
+                                <li><i class="fab fa-js"></i> JavaScript/TypeScript</li>
+                                <li><i class="fab fa-node-js"></i> Node.js Backend</li>
+                                <li><i class="fab fa-react"></i> React Native</li>
+                                <li><i class="fas fa-mobile-alt"></i> Ionic Framework</li>
+                            </ul>
+                        </div>
+
+                        <div class="about-form">
+                            <h3>Get in Touch</h3>
+                            <form class="contact-form">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" name="message" rows="5" required></textarea>
+                                </div>
+                                
+                                <!-- Riverty Checkbox Components -->
+                                <div class="form-group">
+                                    <r-checkbox id="terms" name="terms" required>
+                                        <span slot="label">I agree to the terms and conditions</span>
+                                    </r-checkbox>
+                                </div>
+                                <div class="form-group">
+                                    <r-checkbox id="newsletter" name="newsletter">
+                                        <span slot="label">I want to receive the newsletter</span>
+                                    </r-checkbox>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary" disabled>Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>My Technical Blogs</h2>
+                    <p>Sharing knowledge and experience in modern web and mobile development.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h3>Navigation</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="index.html#articles">Articles</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-column">
+                        <h3>Categories</h3>
+                        <ul>
+                            <li><a href="#">Angular</a></li>
+                            <li><a href="#">JavaScript</a></li>
+                            <li><a href="#">Node.js</a></li>
+                            <li><a href="#">React Native</a></li>
+                            <li><a href="#">Ionic</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-column">
+                        <h3>Follow Me</h3>
+                        <div class="social-links">
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="Medium"><i class="fab fa-medium"></i></a>
+                            <a href="#" aria-label="Stack Overflow"><i class="fab fa-stack-overflow"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 My Technical Blogs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
